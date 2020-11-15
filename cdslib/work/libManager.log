@@ -1,0 +1,255 @@
+\o Program:		@(#)$CDS: libManager version 6.1.6 - CAT33 02/20/2013 14:27 (sjfnl893) $
+\o Sub version:		sub-version  p011 
+\o Arguments:		-mpssession virtuoso2991 -mpshost MOUNTAIN 
+\o Working Directory:	MOUNTAIN:/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work
+\o 64-bit offsets
+\o Qt version: 		4.7.2
+\o Log file is "/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/libManager.log".
+\o Opening libManager window.
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrResizeWindow(cdsLibManager list(381 171 1092 570))
+\o changeWorkingDir("/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work") unnecessary.
+\o ddSetForcedLib("") unnecessary.
+\o MPS service: map window
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\o Library Manager customization server connected.
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = "NCSU_TechLib_FreePDK15"
+\a nrResizeWindow(cdsLibManager list(381 171 1092 797))
+\a cdsLibManager->libLineEdit->value = "NCSU_TechLib_FreePDK15"
+\a cdsLibManager->FileNewLibButton->value = t
+\a nrSetWindowVisibility(NewLibShell "show")
+\a NewLibShell->QLineEdit2->value = "/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/"
+\a nrSetCurrentWindow(NewLibShell)
+\a nrSetCurrentWindow(NewLibShell->subDialog)
+\a nrResizeWindow(NewLibShell list(674 276 507 559))
+\a NewLibShell->newLibNameText->value = "tfet_proj"
+\a NewLibShell->newLibOKButton->value = t
+\a NewLibShell->subDialog->value = '("/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work" "/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/")
+\a nrSetWindowVisibility(workingDialogForm "show")
+\a nrSetCurrentWindow(workingDialogForm)
+\o Created new library "tfet_proj" at /home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/tfet_proj.
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = nil
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "NCSU_TechLib_FreePDK15"
+\a cdsLibManager->libLineEdit->value = "NCSU_TechLib_FreePDK15"
+\a nrResizeWindow(workingDialogForm list(2 26 303 131))
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "NCSU_TechLib_FreePDK15"
+\a cdsLibManager->libLineEdit->value = "NCSU_TechLib_FreePDK15"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->cellListBox->value = nil
+\a nrListItemAction(cdsLibManager->cellListBox 0 0)
+\a cdsLibManager->cellListBox->value = "pmos"
+\o MPS request: edit design
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\o DB was auto refreshed.
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->libListBox->value = nil
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->libLineEdit->value = ""
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/research-freepdk-library/FreePDK15/cdslib/work/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "tfet_proj"
+\a cdsLibManager->libLineEdit->value = "tfet_proj"
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a nrSetCurrentWindow(cdsLibManager)
+\a cdsLibManager->libListBox->value = "NCSU_TechLib_FreePDK15"
+\a cdsLibManager->cellListBox->value = nil
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->cellLineEdit->value = ""
+\a cdsLibManager->cellListBox->value = "pmos"
+\a cdsLibManager->cellLineEdit->value = "pmos"
+\a cdsLibManager->libLineEdit->value = "NCSU_TechLib_FreePDK15"
+\a cdsLibManager->cellListBox->value = "nmos"
+\a cdsLibManager->cellListBox->value = "nmos_pcell"
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = "nmos_fingers"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = "nmos_pcell"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = "nmos_fingers"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellListBox->value = "nmos_pcell"
+\a cdsLibManager->viewLineEdit->value = ""
+\a cdsLibManager->viewListBox->value = nil
+\a cdsLibManager->viewListBox->value = "layout"
+\a cdsLibManager->viewLineEdit->value = "layout"
+\a cdsLibManager->cellLineEdit->value = "nmos_pcell"
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrSetCurrentWindow(cdsLibManager)
+\o MPS service: shutdown
+\o libManager is exiting.
+\a nrSetWindowVisibility(cdsLibManager "hide")
+\a exit(0)

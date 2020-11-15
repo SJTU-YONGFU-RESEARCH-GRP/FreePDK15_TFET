@@ -1,0 +1,493 @@
+////////////////////////////////////////////////////////////////////////////////////
+//    15nm Free PDK  Rules SVRF
+//
+// Copyright (c) 2013-2016 North Carolina State University 
+// and Mentor Graphics.  All Rights Reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+// 1. Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// 4. SVRF Technology in this kit is licensed under the the agreement
+// found in the SVRF TECHNOLOGY LICENSE AGREEMENT below.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+////////////////////////////////////////////////////////////////////////////////////
+//              SVRF(TM) TECHNOLOGY LICENSE AGREEMENT
+//                       February 6, 2009
+// 
+// This license is a legal "Agreement" concerning the use of SVRF
+// Technology between you, the end user, either individually or as an
+// authorized representative of the school or company acquiring the
+// license ("You"), and Mentor Graphics Corporation and Mentor Graphics
+// (Ireland) Limited acting directly or through their subsidiaries or
+// authorized distributors (collectively "Mentor Graphics"). "SVRF
+// Technology" shall mean Mentor Graphics' syntax for expressing process
+// rules and controlling physical verification, principally the syntax
+// expressed in Mentor Graphics. SVRF User Manual. USE OF SVRF TECHNOLOGY
+// INDICATES YOUR COMPLETE AND UNCONDITIONAL ACCEPTANCE OF THE TERMS AND
+// CONDITIONS SET FORTH IN THIS AGREEMENT. If you do not agree to these
+// terms and conditions, promptly certify destruction of the SVRF
+// Technology and all accompanying items within five days after receipt
+// of SVRF Technology.
+// 
+// 1. GRANT OF LICENSE. This file includes SVRF Technology under license
+//    by Mentor Graphics Corporation. Mentor Graphics grants to You a
+//    nontransferable, nonexclusive license to use SVRF Technology solely
+//    for use with Mentor Graphics' Calibre(R) tools and either: (a) in an
+//    educational classroom or laboratory environment; or (b) for your
+//    internal business purpose as allowed by an existing license
+//    agreement between You and Mentor Graphics.
+// 
+// 2. RESTRICTIONS ON USE. All SVRF Technology constitutes or contains
+//    trade secrets and confidential information of Mentor Graphics or
+//    its licensors. You shall not make SVRF Technology available in any
+//    form to any person other those persons whose performance requires
+//    such access and who are under obligations of confidentiality. You
+//    shall take appropriate action to protect the confidentiality of
+//    SVRF Technology and ensure that persons permitted access to SVRF
+//    Technology do not disclose it or use it except as permitted by this
+//    Agreement. The provisions of this Section 2 shall survive the
+//    termination or expiration of this Agreement.
+// 
+// 3. NO WARRANTY. Mentor Graphics expressly disclaims any warranty for
+//    SVRF Technology. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,
+//    SVRF TECHNOLOGY AND ANY RELATED DOCUMENTATION ARE PROVIDED "AS IS"
+//    AND WITH ALL FAULTS AND WITHOUT WARRANTIES OR CONDITIONS OF ANY
+//    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE
+//    IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A
+//    PARTICULAR PURPOSE, OR NONINFRINGEMENT. THE ENTIRE RISK ARISING OUT
+//    OF USE OR PERFORMANCE OF SVRF TECHNOLOGY REMAINS WITH YOU.
+// 
+// 4. LIMITATION OF LIABILITY. EXCEPT WHERE THIS EXCLUSION OR RESTRICTION
+//    OF LIABILITY WOULD BE VOID OR INEFFECTIVE UNDER APPLICABLE LAW, IN
+//    NO EVENT WILL MENTOR GRAPHICS OR ITS LICENSORS BE LIABLE FOR
+//    INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES (INCLUDING
+//    LOST PROFITS OR SAVINGS) WHETHER BASED ON CONTRACT, TORT OR ANY
+//    OTHER LEGAL THEORY, EVEN IF MENTOR GRAPHICS OR ITS LICENSORS HAVE
+//    BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+// 
+// 5. TERM. This Agreement remains effective until termination. This
+//    Agreement will immediately terminate upon notice if you exceed the
+//    scope of license granted or otherwise fail to comply with the
+//    provisions of Sections 1 or 2. For any other material breach under
+//    this Agreement, Mentor Graphics may terminate this Agreement upon
+//    30 days written notice if you are in material breach and fail to
+//    cure such breach within the 30-day notice period. Upon any
+//    termination, you agree to cease all use of SVRF Technology and
+//    certify destruction of SVRF Technology, including all copies, to
+//    Mentor Graphics. reasonable satisfaction.
+// 
+// 6. GOVERNING LAW. This License shall be governed by and construed
+//    under the laws of the State of Oregon, USA, if You are located in
+//    North or South America, and the laws of Ireland if You are located
+//    outside of North or South America.
+// 
+// 7. SEVERABILITY. If any provision of this Agreement is held by a court
+//    of competent jurisdiction to be void, invalid, unenforceable or
+//    illegal, such provision shall be severed from this Agreement and
+//    the remaining provisions will remain in full force and effect.
+// 
+// 8. MISCELLANEOUS. This Agreement contains the parties' entire
+//    understanding relating to its subject matter and supersedes all
+//    prior or contemporaneous agreements, except valid license
+//    agreements related to the subject matter of this Agreement (which
+//    are physically signed by you and an authorized agent of Mentor
+//    Graphics). This Agreement may only be modified in writing by
+//    authorized representatives of the parties. Waiver of terms or
+//    excuse of breach must be in writing and shall not constitute
+//    subsequent consent, waiver or excuse.
+////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+FreePDK15 LVS Rule File
+Based on FreePDK45 LVS Rule File
+FinFET Device Extraction and Definition for Bulk Devices
+Contains rules for Metal Stitching, Multiple Patterning, Multi-Fin Devices, Well-Contacts
+*/
+
+/* Last updated - June 19, 2015 */
+/* Final update used for LVS checks for layouts mentioned in thesis */
+
+/* LVS Specification Statements */
+
+LVS POWER NAME VDD
+LVS GROUND NAME VSS
+LVS REDUCE PARALLEL MOS yes
+LVS REDUCE SERIES MOS yes
+LVS REDUCE SEMI SERIES MOS yes
+LVS FILTER UNUSED MOS no
+LVS RECOGNIZE GATES all
+LVS COMPONENT TYPE PROPERTY element
+LVS COMPONENT SUBTYPE PROPERTY model
+LVS IGNORE PORTS no
+
+/* SOFTCHK statement is used for checking errors because of the sconnect statements. Use this statement in case CalibreLVS sends out warnings saying multiple nets have been stamped, which means that the reported layers are getting multiple inputs or multiple nets are being mapped on the same layer. Use corresponding layer as the parameter in the LVS SOFTCHK statement. In this rule file, the layers - poly, nfins, pfins, nwell, pwell use sconnect statement. A way to debug is in the Calibre Verification User's Manual */
+
+LVS SOFTCHK poly ALL
+
+/* Layer Stack File */
+
+include $PDK_DIR/calibre/layers.inc
+
+/* Text Layers can be any of the metal layers defined in the layer stack */
+
+TEXT LAYER M1A M1B M1 MINT1A MINT1B MINT1 MINT2A MINT2B MINT2 MINT3A MINT3B MINT3 MINT4A MINT4B MINT4 MINT5A MINT5B MINT5 MSMG1 MSMG2 MSMG3 MSMG4 MSMG5 MG1 MG2
+PORT LAYER TEXT  M1A M1B M1 MINT1A MINT1B MINT1 MINT2A MINT2B MINT2 MINT3A MINT3B MINT3 MINT4A MINT4B MINT4 MINT5A MINT5B MINT5 MSMG1 MSMG2 MSMG3 MSMG4 MSMG5 MG1 MG2
+
+
+/* =========================================================================================================*/
+
+
+/* Layer Definitions and Pin Extraction*/
+
+bulk = extent
+nwell = bulk and NW
+pwell = bulk not NW
+
+
+n_active_area = pwell and ACT
+n_fin_area = n_active_area and NIM /* Parallel to 'ndif' in FreePDK45*/
+
+
+p_active_area = nwell and ACT
+p_fin_area = p_active_area and PIM /* Parallel to 'pdif' in FreePDK45*/
+
+
+/* Multiple Patterning leads to use of all three layers - GATEA, GATEB, GATEAB for poly defintions*/
+
+poly = ((GATEA or GATEB) or GATEAB) not GATEC /* Parallel to 'poly' in FreePDK45 */
+
+
+/*
+Gate Definition for nFET and pFET
+*/
+ngate1 = n_fin_area and poly
+ngate_dev1 = ngate1 not interact VTH
+ngate_dev2 = ngate_dev1 not interact THKOX
+ngate = ngate_dev2 not interact VTL
+
+pgate1 = p_fin_area and poly
+pgate_dev1 = pgate1 not interact VTH
+pgate_dev2 = pgate_dev1 not interact THKOX
+pgate = pgate_dev2 not interact VTL
+
+/*
+Gate Definition for Devices with High Threshold Adjustments
+*/
+
+ngate_dev1_vth = ngate1 not interact VTL
+ngate_dev2_vth = ngate_dev1_vth not interact THKOX
+ngate_vth = ngate_dev2_vth interact VTH
+
+pgate_dev1_vth = pgate1 not interact VTL
+pgate_dev2_vth = pgate_dev1_vth not interact THKOX
+pgate_vth = pgate_dev2_vth interact VTH
+
+
+/*
+Gate Definition for Devices with Low Threshold Adjustments
+*/
+
+ngate_dev1_vtl = ngate1 not interact VTH
+ngate_dev2_vtl = ngate_dev1_vtl not interact THKOX
+ngate_vtl = ngate_dev2_vtl interact VTL
+
+pgate_dev1_vtl = pgate1 not interact VTH
+pgate_dev2_vtl = pgate_dev1_vtl not interact THKOX
+pgate_vtl = pgate_dev2_vtl interact VTL
+
+
+/*
+Gate Definition for Devices with Thick-Oxide Adjustments
+*/
+
+ngate_dev1_thkox = ngate1 not interact VTH
+ngate_dev2_thkox = ngate_dev1_thkox not interact VTL
+ngate_thkox = ngate_dev2_thkox interact THKOX
+
+pgate_dev1_thkox = pgate1 not interact VTH
+pgate_dev2_thkox = pgate_dev1_thkox not interact VTL
+pgate_thkox = pgate_dev2_thkox interact THKOX
+
+
+/* Fin(Source and Drain) Definition */
+
+nfins = n_fin_area not ngate1
+pfins = p_fin_area not pgate1
+
+
+/*
+Connectivity Extraction - Back End of Line Layers
+For connectivity to pass from one layer to the other all the respective layers must appear in the 'connect' statements.
+*/
+
+connect M1A MINT1A by V1
+connect M1A MINT1B by V1
+connect M1A MINT1 by V1
+
+connect M1B MINT1A by V1
+connect M1B MINT1B by V1
+connect M1B MINT1 by V1
+
+connect M1 MINT1A by V1
+connect M1 MINT1B by V1
+connect M1 MINT1 by V1
+
+
+connect MINT1A MINT2A by VINT1
+connect MINT1A MINT2B by VINT1
+connect MINT1A MINT2 by VINT1
+
+connect MINT1B MINT2A by VINT1
+connect MINT1B MINT2B by VINT1
+connect MINT1B MINT2 by VINT1
+
+connect MINT1 MINT2A by VINT1
+connect MINT1 MINT2B by VINT1
+connect MINT1 MINT2 by VINT1
+
+
+connect MINT2A MINT3A by VINT2
+connect MINT2A MINT3B by VINT2
+connect MINT2A MINT3 by VINT2
+
+connect MINT2B MINT3A by VINT2
+connect MINT2B MINT3B by VINT2
+connect MINT2B MINT3 by VINT2
+
+connect MINT2 MINT3A by VINT2
+connect MINT2 MINT3B by VINT2
+connect MINT2 MINT3 by VINT2
+
+
+connect MINT3A MINT4A by VINT3
+connect MINT3A MINT4B by VINT3
+connect MINT3A MINT4 by VINT3
+
+connect MINT3B MINT4A by VINT3
+connect MINT3B MINT4B by VINT3
+connect MINT3B MINT4 by VINT3
+
+connect MINT3 MINT4A by VINT3
+connect MINT3 MINT4B by VINT3
+connect MINT3 MINT4 by VINT3
+
+
+connect MINT4A MINT5A by VINT4
+connect MINT4A MINT5B by VINT4
+connect MINT4A MINT5 by VINT4
+
+connect MINT4B MINT5A by VINT4
+connect MINT4B MINT5B by VINT4
+connect MINT4B MINT5 by VINT4
+
+connect MINT4 MINT5A by VINT4
+connect MINT4 MINT5B by VINT4
+connect MINT4 MINT5 by VINT4
+
+
+connect MINT5A MSMG1 by VINT5
+connect MINT5B MSMG1 by VINT5
+connect MINT5 MSMG1 by VINT5
+
+
+connect MSMG1 MSMG2 by VSMG1
+connect MSMG2 MSMG3 by VSMG2
+connect MSMG3 MSMG4 by VSMG3
+connect MSMG4 MSMG5 by VSMG4
+connect MSMG5 MG1 by VSMG5
+connect MG1 MG2 by VG1
+
+
+/* Metal Stitching
+Should contain all possible connections. For connectivity to pass between layers, all of them must appear in the 'connect' statements. If A connects B and B connects C, connectivity will not pass between A and C unless 'connect A C' statement is specified.
+ */
+
+connect M1A M1B
+connect M1B M1
+connect M1 M1A
+
+connect MINT1A MINT1B
+connect MINT1B MINT1
+connect MINT1 MINT1A
+
+connect MINT2A MINT2B
+connect MINT2B MINT2
+connect MINT2 MINT2A
+
+connect MINT3A MINT3B
+connect MINT3B MINT3
+connect MINT3 MINT3A
+
+connect MINT4A MINT4B
+connect MINT4B MINT4
+connect MINT4 MINT4A
+
+connect MINT5A MINT5B
+connect MINT5B MINT5
+connect MINT5 MINT5A
+
+
+/* Connectivity Extraction - Front End of Line and Middle of Line Layers */
+
+//connect poly GIL
+//connect nfins AIL1
+//connect pfins AIL1
+
+sconnect GIL poly
+sconnect AIL1 nfins
+sconnect AIL1 pfins
+
+//rule { stamp poly by GIL }
+//rule { stamp nfins by AIL1 }
+//rule { stamp pfins by AIL1 }
+
+/* AIL2 overlaps both GIL and AIL1. However AIL1 and GIL cannot be connected together*/
+
+/* If GATE layers overlap, connectivity is passed - Check and remove the next three statements in case GATE connectivity should not be passed from layer to layer */
+connect GATEA GATEB
+connect GATEB GATEAB
+connect GATEAB GATEA
+
+/* Following are the Middle-end-of-line connections */
+
+//connect AIL1 AIL2
+//connect GIL AIL2
+
+connect AIL2 AIL1
+connect AIL2 GIL
+
+//stamp AIL1 by AIL2
+//stamp GIL by AIL2
+
+connect GIL M1A by V0
+connect GIL M1B by V0
+connect GIL M1 by V0
+connect AIL2 M1A by V0
+connect AIL2 M1B by V0
+connect AIL2 M1 by V0
+
+/* Well Contact Definitions */
+
+VPW1 = PIM and ACT
+VPW = VPW1 and pwell
+
+VNW1 = NIM and ACT
+VNW = VNW1 and nwell
+
+//connect pwell AIL1 by VPW
+//connect nwell AIL1 by VNW
+
+sconnect AIL1 pwell by VPW
+sconnect AIL1 nwell by VNW
+
+/* Device Definition 
+All layers given as pin layers for device definitions must be used in the 'connect' statements to extract connectivity from those layers. Failure to do so might give some 'Bad Device' errors.
+*/
+
+device mn (nfet) ngate poly (G) nfins (S) nfins (D) pwell CMACRO MY_FET_PROPERTIES ngate
+device mp (pfet) pgate poly (G) pfins (S) pfins (D) nwell CMACRO MY_FET_PROPERTIES pgate
+
+device mn (nfet_vth) ngate_vth poly (G) nfins (S) nfins (D) pwell CMACRO MY_FET_PROPERTIES ngate_vth
+device mp (pfet_vth) pgate_vth poly (G) pfins (S) pfins (D) nwell CMACRO MY_FET_PROPERTIES pgate_vth
+
+device mn (nfet_vtl) ngate_vtl poly (G) nfins (S) nfins (D) pwell CMACRO MY_FET_PROPERTIES ngate_vtl
+device mp (pfet_vtl) pgate_vtl poly (G) pfins (S) pfins (D) nwell CMACRO MY_FET_PROPERTIES pgate_vtl
+
+device mn (nfet_thkox) ngate_thkox poly (G) nfins (S) nfins (D) pwell CMACRO MY_FET_PROPERTIES ngate_thkox
+device mp (pfet_thkox) pgate_thkox poly (G) pfins (S) pfins (D) nwell CMACRO MY_FET_PROPERTIES pgate_thkox
+
+
+/* Property calculation MACROs
+These values are specified for a technology, these cannot be modified by the user
+ */
+
+ 
+VARIABLE fin_height 30e-9
+VARIABLE fin_width 8e-9
+VARIABLE fin_separation 40e-9
+VARIABLE Wfin_d 8e-9
+VARIABLE Wfin_s 8e-9
+
+/* MACRO Definition */
+
+DMACRO MY_FET_PROPERTIES gate{
+[
+PROPERTY  W, L, nfin, ADEJ, ASEJ, PDEJ, PSEJ
+
+     
+     /* Channel Length */
+     L = ((perim(gate) - perim_co(gate,S) - perim_co(gate,D) ) * 0.5)
+    
+     /* Layout Width - Not to be confused with Channel Width */
+     W = ((perim_co(gate,S) + perim_co(gate,D) ) * 0.5)
+
+     /* Number of fins */
+     nfin = ((W-fin_width)/fin_separation) + 1
+     
+     /* Channel Width - Obsolete with FINFET Technology calculations */
+     /* W_channel = nfin * ((2 * fin_height) + fin_width) */
+     
+     /* Drain Length - Fin extension on the drain side */
+
+     Lfin_d = ((perim(D) - (2 * perim_co(gate,D))) * 0.5)
+
+     /* Source Length - Fin extension on the source side */
+     
+     Lfin_s = ((perim(S) - (2 * perim_co(gate,S))) * 0.5)
+     
+
+     
+     /* Area of Drain - Bulk Devices */     
+     ADEJ = (nfin * Wfin_d * Lfin_d)
+
+     /* Area of Source - Bulk Devices */     
+     ASEJ = (nfin * Wfin_s * Lfin_s)
+
+     /* Perimeter of Drain - Bulk Devices */
+     PDEJ = ((2 * Lfin_d * nfin) + (Wfin_d * nfin))
+
+     /* Perimeter of Source - Bulk Devices */
+     PSEJ = ((2 * Lfin_s * nfin) + (Wfin_s * nfin))
+
+     /* Area and Perimeter adjustment for multi-finger devices */
+
+     if (Lfin_d > Lfin_s) {
+     Lfin_d = (Lfin_d * 0.5)
+     ADEJ = (nfin * Wfin_d * Lfin_d)
+     PDEJ = (2 * Lfin_d * nfin)
+     }
+     
+     if (Lfin_s > Lfin_d) {
+     Lfin_s = (Lfin_s * 0.5)
+     ASEJ = (nfin * Wfin_s * Lfin_s)
+     PSEJ = (2 * Lfin_s * nfin)
+     }
+
+   
+]
+}

@@ -1,0 +1,113 @@
+\# Program start time:     UTC 2017.05.26 18:53:23.625
+\# Local time: EDT (UTC-04:00) 2017.05.26 14:53:23.625
+\o Program:		@(#)$CDS: virtuoso version 6.1.7-64b 09/27/2016 19:46 (sjfhw302) $
+\o Hierarchy:		/afs/eos.ncsu.edu/dist/cadence_apps/IC617/tools.lnx86/dfII/
+\o Sub version:		sub-version  IC6.1.7-64b.500.7  (64-bit addresses)
+\# Command line:	/ncsu/cadence2016/IC/tools/dfII/bin/64bit/virtuoso -log CDS.log -nograph -replay exe.il
+\# Host name (type):	waterloo.ece.ncsu.edu (x86_64)
+\# Operating system:	Linux 2.6.32-696.el6.x86_64 #1 SMP Tue Feb 21 00:53:17 EST 2017
+\# Linux /etc/issue:	Red Hat Enterprise Linux Workstation release 6.9 (Santiago)
+\# Linux /etc/issue:	Kernel \r on an \m
+\# X display name (WxH):	waterloo.ece.ncsu.edu:80 (1024x868)
+\# Available geometry:			TL(0:0) BR(1023:867)
+\# X server:			RealVNC Ltd (VNC nograph server, PID 9111)
+\# Depth of Visual (Root):	16 (16)
+\# Number of Planes Used:	16
+\# X version:		11.0 (vendor release 3370)
+\# X resource pool:	base 0x800000, mask 0x3fffff (4194303), shift 0
+\# 			current id 0x0, current max 0x3ffffa (4194298)
+\# Max data seg size:	     unlimited
+\# Max process size:	     unlimited
+\# Initial sbrk value:	        366 MB
+\# Available memory:	      9,401 MB
+\# System memory:	     15,749 MB
+\# Maximum memory size:	     15,462 MB
+\# Max mem available:	      9,479 MB
+\# Initial memory used:	         78 MB
+\#        process size:	        928 MB
+\# Qt version:		4.8.5
+\# Window Manager:	other
+\# User Name:		wdavis
+\o Working Directory:	waterloo.ece.ncsu.edu:/local/home/wdavis/dist/FreePDK15/cdslib/build/run
+\# Process Id:		8960
+\o 
+\o COPYRIGHT (C) 1992-2016  CADENCE DESIGN SYSTEMS INC.  ALL RIGHTS RESERVED.
+\o           (C) 1992-2016  UNIX SYSTEMS Laboratories INC.,
+\o                          Reproduced with permission.
+\o 
+\o This Cadence Design Systems program and online documentation are
+\o proprietary/confidential information and may be disclosed/used only
+\o as authorized in a license agreement controlling such use and disclosure.
+\o 
+\o           RESTRICTED RIGHTS NOTICE (SHORT FORM)
+\o Use/reproduction/disclosure is subject to restriction
+\o set forth at FAR 1252.227-19 or its equivalent.
+\o Loading geView.cxt 
+\o Loading menuBuilder.cxt 
+\o Loading schView.cxt 
+\o Loading selectSv.cxt 
+\o Loading pvsui.cxt.
+\o Loading wireEdit.cxt 
+\o Loading pte2.cxt 
+\o Loading xlUI.cxt 
+\o Loading auCore.cxt 
+\o Loading vhdl.cxt 
+\o Loading seismic.cxt 
+\o Loading ci.cxt 
+\o Loading ams.cxt 
+\o Virtuoso Framework License (111) was checked out successfully. Total checkout time was 0.06s.
+\w *WARNING* The directory: '/local/home/wdavis/dist/FreePDK15/cdslib/NCSU_TechLib_FreePDK15' does not exist
+\w 	but was defined in libFile '/local/home/wdavis/dist/FreePDK15/cdslib/build/run/cds.lib' for Lib 'NCSU_TechLib_FreePDK15'.
+\o loading vars from /home/wdavis/dist/FreePDK15/cdslib/setup/cdsenv for tool layout
+\o ---------------------------------------------------------------------------
+\o Welcome to the FreePDK 15nm Free, Open-Source Process Design Kit
+\o 
+\o ---------------------------------------------------------------------------
+\o 
+\o Done loading FreePDK customizations.
+\p > 
+\o Loading pe.cxt 
+\i (pdkCompileTechfile)
+\o Begin pdkCompileTechfile
+\w *WARNING* LIB NCSU_TechLib_FreePDK15 from File /local/home/wdavis/dist/FreePDK15/cdslib/build/run/cds.lib Line 6 redefines
+\w LIB NCSU_TechLib_FreePDK15 from the same file (defined earlier.)
+\o Loading "/home/wdavis/dist/FreePDK15/cdslib/build/cds/FreePDK.tf" into "/home/wdavis/dist/FreePDK15/cdslib/NCSU_TechLib_FreePDK15"...Loading techComp.cxt 
+\o INFO (TECH-180006): Compiling class 'controls'....
+\o INFO (TECH-180006): Compiling class 'layerDefinitions'....
+\o INFO (TECH-180006): Compiling class 'layerRules'....
+\o INFO (TECH-180006): Compiling class 'viaDefs'....
+\o INFO (TECH-180004): Compiling class 'constraintGroups'....
+\o INFO (TECH-180006): Compiling class 'devices'....
+\o INFO (TECH-180006): Compiling class 'leRules'....
+\o Techfile successfully appended.
+\t Finished pdkCompileTechfilenil
+\p > 
+\i (loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/nmos_pcell.il"))
+\o Loading pCellGen.cxt 
+\w *WARNING* LIB NCSU_TechLib_FreePDK15 from File /local/home/wdavis/dist/FreePDK15/cdslib/build/run/cds.lib Line 6 redefines
+\w LIB NCSU_TechLib_FreePDK15 from the same file (defined earlier.)
+\o Generating Pcell for 'nmos_pcell layout'.
+\o Loading le.cxt 
+\# Memory report: using         183 MB, process size 1,078 MB at UTC 2017.05.26 18:53:29.830
+\o Loading drdEdit.cxt 
+\o Loading soi.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i (loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/pmos_pcell.il"))
+\o Loading layers.cxt 
+\o Generating Pcell for 'pmos_pcell layout'.
+\t t
+\p > 
+\i (loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/nmos_pcell_fingers.il"))
+\o Generating Pcell for 'nmos_fingers layout'.
+\t t
+\p > 
+\i (loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/pmos_pcell_fingers.il"))
+\o Generating Pcell for 'pmos_fingers layout'.
+\t t
+\p > 
+\i (exit)
+\o 
+\# Memory report: on exit            187 MB, process size 1,082 MB at UTC 2017.05.26 18:53:32.850
+\# Memory report: peak usage         187 MB, process size 1,082 MB

@@ -1,0 +1,135 @@
+Release Notes for FreePDK15 1.2 (2017-05-30)
+(Git Repository Commit 2017-05-26)
+
+Included in this release:
+ - Technology library and display resources for Cadence Virtuoso
+     (Tested with Virtuoso 6.1.6 09/01/2015)
+ - Calibre DRC, LVS, and xRC rules (Tested with Calibre 2013.4_37.29)
+ - HSPICE Simulation Models (Tested with HSPICE K-2015.06-2)
+     Taken from the ASU 14nm PTM-MG HP model (2012-06-01)
+     (http://ptm.asu.edu) with minor changes for compatibility with HSPICE
+
+Changes in this release
+ - The following DRC Rules values have changed to be consistent with
+   the NanGate 15nm Open Cell Library:
+
+     Rule       Old Value     New Value
+     ===================================
+     ACT.5      32 nm         32 nm, 96 nm, or >= 160 nm
+     ACT.8       0.005 um^2    0.004608 um^2
+     AIL2.3     10 nm          2 nm
+     AIL2.5     58 nm          6 nm
+     AIL2.9     38 nm         16 nm
+     AIL2.10    62 nm         16 nm
+     GIL.8      32 nm          5 nm
+     GIL.10     24 nm          2 nm
+     V0.9       38 nm          6 nm
+     M1.3      960 nm       1800 nm
+     MINT.3    960 nm       1800 nm
+
+     Other changes:
+     - NW.1,2, & 3 no longer use scale ratio of 0.8
+     - GIL now connects to AIL2
+     - Fixed bug in ACT.9 (rule was not checking for potential latchup)
+     - Fixed bug in M1 width-dependent rules (M1.8 - M1.21)
+       (was enforcing < min value, rather than <= min value)
+     - Fixed bug in MINT1-5.3, MSMG1-5.3, and MG1-2.3.  Rule is now correct.
+     - Rules now check un-colored layers for M1 and MINT1-5.  Spacing between
+       shapes assumes the best case (i.e. spacing between different colors).
+     - Fixed bug in GATE.2 that was causing rotated instances to fail.
+ - Display Resources changes
+     - AIL2 fill pattern changed so that it is possible to see it
+       under M1A.  It is unfortunately still very hard to do, however.
+ - P-Cells for nmos & pmos transistors have been added to the
+   technology library (with the cell-names nmos_pcell & pmos_pcell).
+   These cells are now debugged and tested and ready to use.  Note that these
+   cells are implemented with SKILL and no longer require the PyCell plug-in.
+ - Schematic callbacks have been added to the nmos and pmos
+   transistors to update the source and drain areas & perimeters when
+   the number of fins is changed in the symbol.
+
+
+Issues with this release
+ - The design rules still need work.  Here are some of the more serious issues:
+     1) There is no rule to enforce fin alignment (i.e. ACT alignment
+          to a discrete grid).  We will need to come up with a rule for this
+          in a future release.
+     2) M1 width-dependent spacing rules should be enforced relative to the
+          size of the smaller shape, but are currently enforced relative 
+          to the larger shape.  We don't know how to code this rule currently.
+     3) Antenna rules are currently not working and need to be fixed.
+     4) Rules GATE.1b and GATE.2b are incorrectly flagging error on horizontal
+          shapes.  These rules have been disabled until a fix can be found.
+     5) Various other rules may limit density in ways that are unrealistic.
+          Will will need to tune these rules in a future release.
+ - Calibre xRC Parasitic Extraction works only with "uncolored" metal layers
+     (i.e. M1, MINT1, etc., and not M1A, M1B, MINT1A, etc., although GATEA
+     and GATEB are stll used).  Inclusion of the colored layers caused the 
+     rules.C file to increase significantly in size, causing extraction of 
+     even the simplest of layouts to take in excess of ten minutes.  It is
+     recommended that the colored metal layers be mapped to uncolored layers
+     before running Calibre xRC.
+ - HSPICE netlisting with Cadence Analog Design Environment (ADE) hspiceD
+     interface is only partially supported.  We have currently been unable
+     to pass the necessary parameters (NFIN, ASEJ, ADEJ, PSEJ, & PDEJ) through
+     the interface.  We work-around this issue by passing these parameters
+     through the more traditional parameters (M, AS, AD, PS, & PD) and
+     then use a Python script to change the parameter names as needed
+     (which can be found in $PDK_DIR/hspice/examples/fixHSPICEparam.py).
+     Please see the tutorial "Analog Artist with HSPICE" at
+     http://www.eda.ncsu.edu/wiki/Tutorial:Contents for details.
+
+
+Release Notes for FreePDK15 1.1 (2014-11-21)
+(Git Repository Commit 2014-11-21)
+
+Changes in this release
+  - Slight changes to license agreement and inclusion of license 
+    statement in every file. No other changes.
+
+
+Release Notes for FreePDK15 1.0 (2014-07-22)
+(Git Repository Commit 2014-07-22)
+
+Included in this release:
+ - Technology library and display resources for Cadence Virtuoso
+     (Tested with Virtuoso 6.1.5 01/16/2012)
+ - Calibre DRC rules (Tested with Calibre 2011.3_18.12)
+ - P-Cells for the CiraNova/Synopsys PyCell
+     (Tested with PyCell 4.2.5-L2 Jun 27 2008)
+
+Planned for the next release:
+ - HSPICE models
+ - Calibre LVS and xRC rules
+
+Issues with this release:
+ - P-Cells are not ready for use.  One reason for the delay is that we 
+   have not successfully compiled the technology library with Synopsys
+   PyCell 2013.12.  We are not currently working on this issue due to 
+   lack of resources and are instead focusing on LVS/xRC rules.  The P-Cells
+   included with this kit are intended rather to illustrate the current
+   status of the code and provide a starting point for someone to begin
+   debugging.
+ - Design rules are subject to change.  We are iterating with NanGate and
+   Mentor Graphics on design rules and anticipate another release later
+   this year.  A summary of the issues we are currently considering can
+   found by running DRC on the SDFFRNQ_X1 cell from the NanGate 15nm Open
+   Cell Library:
+
+    Rule Name  Description                                     Result Count
+    ---------  ---------------------------------------------   ------------
+    ACT.5      Horizontal Spacing of ACT                                  2
+    AIL2.3     Minimum spacing between AIL2 and GATE[A|B]                 2
+    AIL2.5     Minimum vertical overlap of AIL1 and AIL2                 15
+    AIL2.10    Vertical spacing of AIL2 and AIL1 on different net         9
+    GIL.8      Minumum vertical spacing of GIL to AIL2                    4
+    V0.9       Minimum space of V0 and GIL on different net              17
+    M1.3       Maximum length of M1[A|B] for wires w/ min width 28nm      2
+    M1.8,9     Minumum spacing of M1[A|B]                                 5
+    M1.15,16   M1[A|B] minimum spacing to M1[B|A]                        16
+    MINT.3     Maximum length of MINTn[A|B] for wires w/ min width 28nm   2
+
+    Some of these violations may be fixed through further clarification of
+    each rule and modification of the calibre rules.  Others may result in 
+    small chances to rule values.
+

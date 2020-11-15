@@ -1,0 +1,30 @@
+\o Program:		@(#)$CDS: libManager version 32.10 11/11/2011 13:43 (cat91amd) $
+\o Sub version:		sub-version  s008 
+\o Arguments:		-unmapped -mpssession virtuoso135045 -mpshost MOUNTAIN 
+\o Working Directory:	MOUNTAIN:/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup
+\o 64-bit offsets
+\o Qt version: 		4.5.3
+\o changeWorkingDir("/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup") unnecessary.
+\o ddSetForcedLib("") unnecessary.
+\o Log file is "/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/libManager.log".
+\o Opening libManager window.
+\a nrSetWindowVisibility(cdsLibManager "show")
+\o MPS service: map window
+\o Library Manager customization server connected.
+\a nrSetCurrentWindow(cdsLibManager)
+\a nrResizeWindow(cdsLibManager list(8 31 713 637))
+\w Warning: The directory: '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/$PDK_DIR/cdslib/NCSU_TechLib_FreePDK15' does not exist
+\w 	but was defined in libFile '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/cds.lib' for Lib 'NCSU_TechLib_FreePDK15'.
+\w Warning: The directory: '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/$CDS/IC/tools/dfII/etc/cdsDefTechLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/cds.lib' for Lib 'cdsDefTechLib'.
+\w Warning: The directory: '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/$CDS/IC/tools/dfII/etc/cdslib/basic' does not exist
+\w 	but was defined in libFile '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/cds.lib' for Lib 'basic'.
+\w Warning: The directory: '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/$CDS/IC/tools/dfII/etc/cdslib/sheets/US_8ths' does not exist
+\w 	but was defined in libFile '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/cds.lib' for Lib 'US_8ths'.
+\w Warning: The directory: '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/$CDS/IC/tools/dfII/etc/cdslib/artist/analogLib' does not exist
+\w 	but was defined in libFile '/home/yongfu/proj/research-freepdk-library/FreePDK15/cdslib/setup/cds.lib' for Lib 'analogLib'.
+\a cdsLibManager->libListBox->value = "cdsDefTechLib"
+\a cdsLibManager->libLineEdit->value = "cdsDefTechLib"
+\a nrSetWindowVisibility(cdsLibManager "hide")
+\o libManager is exiting.
+\a exit(0)

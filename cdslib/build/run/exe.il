@@ -1,0 +1,6 @@
+(pdkCompileTechfile)
+(loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/nmos_pcell.il"))
+(loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/pmos_pcell.il"))
+(loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/nmos_pcell_fingers.il"))
+(loadi (strcat (getShellEnvVar "PDK_DIR") "/cdslib/skill/pmos_pcell_fingers.il"))
+(exit)

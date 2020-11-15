@@ -1,0 +1,7 @@
+* NFET
+
+.SUBCKT Res D G S B
+
+Mnfet D G S B nfet W=0.048U L=0.020000U nfin=2
+
+.ENDS 

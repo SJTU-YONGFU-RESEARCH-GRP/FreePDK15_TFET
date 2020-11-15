@@ -1,0 +1,7 @@
+* NFET
+
+.SUBCKT PFinFET D G S B
+
+Mpfet D G S B pfet W=0.048U L=0.020000U nfin=2
+
+.ENDS 
