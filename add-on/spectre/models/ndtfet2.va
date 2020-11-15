@@ -1,0 +1,263 @@
+//#######################################################################
+//#
+//#  File :  ndtfet2.va
+//#  Version: 1.0
+//#  Date : July 10, 2015
+//#  Author : Trond Ytterdal
+//#  Description : University of Notre Dame TFET Model
+//#
+//#######################################################################
+
+`include "discipline.h"
+
+`define n_type 1
+`define p_type -1
+`define CHARGE 1.6021918e-19
+`define M0 9.1095e-31
+`define H 6.62606957e-34
+`define HBAR 1.05458e-34
+`define KB 1.3806488E-23
+`define PI 3.141592653
+`define EPS0 8.85418782e-12
+`define VDSMIN 1e-12
+`define DELTA 5
+`define VMIN 0.0001
+`define AMIN 1u
+
+module ndtfet2(drain, gate, source, bulk);
+  inout drain, gate, source, bulk;
+  electrical drain, gate, source, bulk;
+  electrical drainprime, gateprime, sourceprime;
+  // instance parameters
+  parameter real w = 1e-6;
+  // model parameters
+  parameter real adq1 = 0.04295;
+  parameter real adq2 = 0.056735;
+  parameter real agate = 0.85;
+  parameter real asq1 = -0.00479;
+  parameter real asq1n = 0.019037;
+  parameter real asq2 = 0.0070874;
+  parameter real asq2n = 0.012071;
+  parameter real bdq1 = 1.2197;
+  parameter real bdq2 = 0.29892;
+  parameter real bsq1 = 2.4745;
+  parameter real bsq1n = 2.2383;
+  parameter real bsq2 = 8.9262;
+  parameter real bsq2n = 5.2229;
+  parameter real cdbew = 0;
+  parameter real cdq1 = 0.08567;
+  parameter real cdq2 = -0.076568;
+  parameter real cfdw = 0.5e-15;
+  parameter real cfsw = 0.5e-15;
+  parameter real cgbew = 0;
+  parameter real cgdew = 0;
+  parameter real cgsew = 0;
+  parameter real csbew = 0;
+  parameter real csq1 = -0.21747;
+  parameter real csq1n = -3.245;
+  parameter real csq2 = -4.3895;
+  parameter real csq2n = -1.274;
+  parameter real ddq1 = 0.0109;
+  parameter real ddq2 = 0.10549;
+  parameter real dsq1 = 0.078998;
+  parameter real dsq1n = 0.03108;
+  parameter real dsq2 = 0.030767;
+  parameter real dsq2n = 0.043905;
+  parameter real e0 = 0.527e8;
+  parameter real ef = 1;
+  parameter real eg = 0.35;
+  parameter real epsi = 3.9;
+  parameter real esq1 = -0.037973;
+  parameter real esq1n = 0.21722;
+  parameter real esq2 = 0.11597;
+  parameter real esq2n = 0.09701;
+  parameter real eta = 0.1;
+  parameter real fnsid1hz = 1e-28;
+  parameter real gamma = 0.06;
+  parameter real j0 = 1e7;
+  parameter real jp = 2e8;
+  parameter real k = 2;
+  parameter real l = 2e-8;
+  parameter real lambda = 0.19;
+  parameter real mc = 2;
+  parameter real mr = 0.012;
+  parameter real mrg = 0.225;
+  parameter real n0 = 2;
+  parameter real n1 = 1.8;
+  parameter real n2 = 1.1;
+  parameter real na = 14;
+  parameter real nt = 2;
+  parameter real phi = 2.65;
+  parameter real r0 = 0.5;
+  parameter real r1 = 0.01;
+  parameter real r2 = 1.3;
+  parameter real rdw = 0;
+  parameter real rgwl = 0;
+  parameter real rsw = 0;
+  parameter real s = 1;
+  parameter real tch = 5e-9;
+  parameter real tox = 2e-9;
+  parameter integer type = `n_type;
+  parameter real va = -3.4;
+  parameter real voff = 0.01;
+  parameter real voffg = 0.36;
+  parameter real vp = 0.05;
+  parameter real vth = 0.17;
+
+  real vds, vsd, vdse, vsde, vgs, vgd, mrvalue, egvalue, u0, a, b, ag, bg, eps, ru, gi, r0p, deltas;
+  real vgt, vgo, vgoe, vgoen, f, u, e, id;
+  real vgta, vgoa, vgoea, vgoena, fa, ua, ea, ida, idr;
+  real rd, rg, rs, gd, gg, gs;
+  real cdbe, cgbe, cgde, cgse, csbe;
+  real sid;
+  real igd, igd0, u0g, uag, vgde, vdge, n, c, apow, apowe;
+  real vgse, qs, qsn, qsp, qd, asq, bsq, csq, dsq, esq, adq, bdq, cdq, ddq, asqn, bsqn, csqn, dsqn, esqn, t, sign;
+
+  analog
+    begin
+      @(initial_step or initial_step("static"))
+        begin
+          u0 = n1*$vt;
+          mrvalue = mr*`M0;
+          egvalue = eg*`CHARGE;
+          ru = r0*u0;
+          gi = 1/gamma;
+          r0p = 1-r0;
+          deltas = `DELTA*`DELTA;
+          a = w*tch*`CHARGE*`CHARGE*`CHARGE/(8*`PI*`PI*`HBAR*`HBAR)*sqrt(2*mrvalue/egvalue);
+          b = 4*egvalue*sqrt(2*mrvalue*egvalue)/(3*`CHARGE*`HBAR);
+          eps = epsi*`EPS0;
+          ag = `CHARGE*`CHARGE/(8*`PI*`H*eps*phi);
+          bg = 8*`PI/(3*`H*`CHARGE)*pow(`CHARGE*phi,1.5);
+          u0g = $vt*nt;
+          uag = $vt*na;
+          cdbe = cdbew*w*1e6;
+          cgbe = cgbew*w*1e6;
+          cgde = cgdew*w*1e6;
+          cgse = cgsew*w*1e6;
+          csbe = csbew*w*1e6;
+          rd = rdw/(w*1e6);
+          rg = rgwl*w/l;
+          rs = rsw/(w*1e6);
+          if(rd > 0)
+            gd = 1/rd;
+          else
+            gd = 0;
+          if(rg > 0)
+            gg = 1/rg;
+          else
+            gg = 0;
+          if(rs > 0)
+            gs = 1/rs;
+          else
+            gs = 0;
+        end
+      vds = type*V(drainprime,sourceprime);
+      vgd = type*V(gateprime,drainprime);
+      vgs = type*V(gateprime,sourceprime);
+      vgt  = vgs-vth;
+      vdse = `VDSMIN*(0.5*vds/`VDSMIN+sqrt(deltas+(0.5*vds/`VDSMIN-1)*(0.5*vds/`VDSMIN-1))-sqrt(deltas+1));
+      // main drain-source tunneling current
+      vgo  = vgs-voff;
+      vgoe = `VMIN*(1+0.5*vgo/`VMIN+sqrt(deltas+(0.5*vgo/`VMIN-1)*(0.5*vgo/`VMIN-1)));
+      vgoen = vgoe/(vth-voff);
+      f = (1-limexp(-vdse*gi))/(1+limexp((lambda*tanh(vgo)-vdse)*gi));
+      u = ru+r0p*u0*vgoen;
+      e = e0*(1+r1*vdse+r2*vgoe);
+      id = a*f*u*ln(1+limexp((vgt)/u))*e*limexp(-b/e);
+      // ambipolar drain-source current   
+      vgta = -vgs+2*voff-vth;
+      vgoa  = -vgo;
+      vgoea = `VMIN*(1+0.5*vgoa/`VMIN+sqrt(deltas+(0.5*vgoa/`VMIN-1)*(0.5*vgoa/`VMIN-1)));
+      vgoena = vgoea/(vth-voff);
+      fa = (1-limexp(-vdse*gi))/(1+limexp((lambda*tanh(vgoa)-vdse)*gi));
+      ua = ru+r0p*u0*vgoena;
+      ea = e0*(1+r1*vdse+r2*vgoea);
+      ida = s*a*fa*ua*ln(1+limexp((vgta)/ua))*ea*limexp(-b/ea);
+      // RTD drain-source current
+      vsd = -vds;
+      vsde = `VDSMIN*(0.5*vsd/`VDSMIN+sqrt(deltas+(0.5*vsd/`VDSMIN-1)*(0.5*vsd/`VDSMIN-1))-sqrt(deltas+1));
+      idr = -w*tch*(jp*vsde/vp*k*vgoe*limexp(1+(-vsde+eta*vgs)/vp)+j0*(limexp(vsd/n2/$vt)-1));
+      id = id + ida + idr;
+      // charge
+      vgse = `VMIN*(1+0.5*vgs/`VMIN+sqrt(deltas+(0.5*vgs/`VMIN-1)*(0.5*vgs/`VMIN-1)));
+      adq = adq1*vds + adq2;
+      bdq = bdq1*vds + bdq2;
+      cdq = cdq1*vds + cdq2;
+      ddq = ddq1*vds + ddq2;
+      asq = asq1*vds + asq2;
+      bsq = bsq1*vds + bsq2;
+      csq = csq1*vds + csq2;
+      dsq = dsq1*vds + dsq2;
+      esq = esq1*vds + esq2;
+      asqn = asq1n*vds + asq2n;
+      bsqn = bsq1n*vds + bsq2n;
+      csqn = csq1n*vds + csq2n;
+      dsqn = dsq1n*vds + dsq2n;
+      esqn = esq1n*vds + esq2n;
+      qd = -(-adq*ln(1+limexp((vgse-bdq)/adq))+cdq*vgse + ddq)*w*l*epsi*`EPS0/tox+cfdw*w*1e6*vgd;
+      qsp = -(asq*ln(1+tanh(bsq*vgse+csq))+dsq*vgse + esq)*w*l*epsi*`EPS0/tox*1e15;
+      qsn = -(asqn*ln(1+tanh(bsqn*vgse+csqn))+dsqn*vgse + esqn)*w*l*epsi*`EPS0/tox*1e15;
+      if(qsn == 0) begin
+        t = qsp*1e-15;
+      end else if(qsp == 0) begin
+        t = qsn*1e-15;
+      end else begin
+        t = 1/pow(qsp,13)+1/pow(qsn,13);
+        if(t < 0) begin
+          sign = -1;
+        end else begin
+          sign = 1;
+        end
+        t = sign/pow(sign*t,1.0/13)*1e-15;
+      end
+      qs = -t+cfsw*w*1e6*vgs;
+      // Noise calculations
+      sid = 2*`CHARGE*id;
+      // Gate leakage current
+      vgde = `VMIN*(1+0.5*vgd/`VMIN+sqrt(deltas+(0.5*vgd/`VMIN-1)*(0.5*vgd/`VMIN-1)));
+      vdge = `VMIN*(1+0.5*(-vgd)/`VMIN+sqrt(deltas+(0.5*(-vgd)/`VMIN-1)*(0.5*(-vgd)/`VMIN-1)));
+      apow = 1-(vgde+vdge)/phi;
+      apowe = `AMIN*(1+0.5*apow/`AMIN+sqrt(deltas+(0.5*apow/`AMIN-1)*(0.5*apow/`AMIN-1)));
+      n = eps/tox*(u0g*ln(1+limexp((vgd-voffg)/u0g))+uag*ln(1+limexp(-(vgd-va)/uag)));
+      c = vgd/tox*limexp(20/phi*pow((vgde+vdge)/phi,agate)*(1-(vgde+vdge)/phi));
+      igd0 = n0*ag*c*n;
+      igd = igd0*limexp(-tox*bg/(vgde+vdge)*sqrt(2*mrg*`M0)*(1-pow(apowe,1.5)))*l*w;
+      // Augment the matrix
+      I(gateprime,sourceprime) <+ type*ddt(qs);
+      I(gateprime,drainprime) <+ type*(ddt(qd)+igd);
+      I(drain,bulk) <+ type*ddt(cdbe*V(drain,bulk));
+      I(gate,bulk) <+ type*ddt(cgbe*V(gate,bulk));
+      I(gate,drain) <+ type*(ddt(cgde*V(gate,drain)));
+      I(gate,source) <+ type*ddt(cgse*V(gate,source));
+      I(source,bulk) <+ type*ddt(csbe*V(source,bulk));
+      I(drainprime,sourceprime) <+ type*id;
+      // the next lines should have read: I(drainprime,sourceprime) <+ white_noise(sid,"id")
+      // and I(drainprime,sourceprime) <+ flicker_noise(fnsid1hz,ef,"1overf") 
+      // but that construct messes up ac analysis in both eldo and spectre
+      I(drain,source) <+ white_noise(sid,"id");
+      I(drain,source) <+ flicker_noise(fnsid1hz,ef,"1overf");
+      if(rd > 0)
+        begin
+          I(drain,drainprime) <+ gd*V(drain,drainprime);
+          I(drain,drainprime) <+ white_noise(4*`KB*$temperature*gd,"thermal");
+        end
+      else
+        V(drain,drainprime) <+ 0.0;
+      if(rs > 0)
+        begin
+          I(source,sourceprime) <+ gs*V(source,sourceprime);
+          I(source,sourceprime) <+ white_noise(4*`KB*$temperature*gs,"thermal");
+        end
+      else
+        V(source,sourceprime) <+ 0.0;
+      if(rg > 0)
+        begin
+          I(gate,gateprime) <+ gg*V(gate,gateprime);
+          I(gate,gateprime) <+ white_noise(4*`KB*$temperature*gg,"thermal");
+        end
+      else
+        V(gate,gateprime) <+ 0.0;
+    end
+endmodule
+

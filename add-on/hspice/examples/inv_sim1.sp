@@ -14,7 +14,7 @@
 
 Vsupply VDD 0 0.8
 Vground GND 0 0
-Vin IN 0 pulse (0 0.8 0n 0p 0p 40p 100p)
+Vin IN 0 pulse (0 0.8 0n 10p 10p 40p 100p)
 
 M0 ZN IN GND GND nfet L=2e-08 nfin=2
 M1 ZN IN VDD VDD pfet L=2e-08 nfin=2
